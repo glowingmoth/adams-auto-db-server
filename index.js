@@ -1,18 +1,22 @@
+require('dotenv').config();
+
 const express = require('express');
 const mysql = require('mysql');
 const app = express();
 const port = 3001;
 const cors = require('cors');
+require('dotenv').config();
 
 app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'password',
+  password: process.env.PASSWORD,
   database: 'adamsdb'
 });
 

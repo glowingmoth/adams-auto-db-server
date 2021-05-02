@@ -32,27 +32,33 @@ app.get('/read', (req, res) => {
   });
 });
 
+
+// Creating a new customer
 app.post('/create', (req, res) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const phone = req.body.phone;
   const email = req.body.email;
+  const houseNumber = req.body.houseNumber;
+  const street = req.body.street;
+  const suburb = req.body.suburb;
+  const city = req.body.city;
 
-  const sqlCreate = "INSERT INTO customers (firstName, lastName, phone, email) VALUES (?,?,?,?)";
-  db.query(sqlCreate, [firstName, lastName, phone, email], (err, result) => {
+  const sqlCreate = "INSERT INTO customers (firstName, lastName, phone, email, houseNumber, street, suburb, city) VALUES (?,?,?,?,?,?,?,?)";
+  db.query(sqlCreate, [firstName, lastName, phone, email, houseNumber, street, suburb, city], (err, result) => {
     if (err) console.log(err);
     res.send(result);
   });
 });
 
-app.delete('/delete', (req, res) => {
-  const customerId = res.data.customer_id;
+// app.delete('/delete', (req, res) => {
+//   const customerId = res.data.customer_id;
 
-  const sqlDelete = "DELETE FROM customers WHERE customer_id = ?";
-  db.query(sqlDelete, [customerId], (err, result) => {
-    if (err) console.log(err);
-  });
-});
+//   const sqlDelete = "DELETE FROM customers WHERE customer_id = ?";
+//   db.query(sqlDelete, [customerId], (err, result) => {
+//     if (err) console.log(err);
+//   });
+// });
 
 
 

@@ -20,34 +20,44 @@ const db = mysql.createConnection({
   database: 'adamsdb'
 });
 
-db.connect((err) => {
-  if (err) throw err
+db.connect((error) => {
+  if (error) throw error
   console.log('Connected to Database!');
 });
 
-app.get('/read', (req, res) => {
+app.get('/read', (request, response) => {
   const sqlSelect = "SELECT * FROM customers";
-  db.query(sqlSelect, (err, result) => {
-    res.send(result);
+  db.query(sqlSelect, (error, result) => {
+    response.send(result);
   });
+});
+
+app.get('/read/:id', (request, response) => {
+  const id = request.params.id;
+  const sqlSelect = "SELECT * FROM customers WHERE customer_id = ? ";
+
+  db.query(sqlSelect, id, (error, result) => {
+    if (error) console.log(error);
+    response.send(result);
+  } )
 });
 
 
 // Creating a new customer
-app.post('/create', (req, res) => {
-  const firstName = req.body.firstName;
-  const lastName = req.body.lastName;
-  const phone = req.body.phone;
-  const email = req.body.email;
-  const houseNumber = req.body.houseNumber;
-  const street = req.body.street;
-  const suburb = req.body.suburb;
-  const city = req.body.city;
+app.post('/create', (request, response) => {
+  const firstName = request.body.firstName;
+  const lastName = request.body.lastName;
+  const phone = request.body.phone;
+  const email = request.body.email;
+  const houseNumber = request.body.houseNumber;
+  const street = request.body.street;
+  const suburb = request.body.suburb;
+  const city = request.body.city;
 
   const sqlCreate = "INSERT INTO customers (firstName, lastName, phone, email, houseNumber, street, suburb, city) VALUES (?,?,?,?,?,?,?,?)";
-  db.query(sqlCreate, [firstName, lastName, phone, email, houseNumber, street, suburb, city], (err, result) => {
-    if (err) console.log(err);
-    res.send(result);
+  db.query(sqlCreate, [firstName, lastName, phone, email, houseNumber, street, suburb, city], (error, result) => {
+    if (error) console.log(error);
+    response.send(result);
   });
 });
 

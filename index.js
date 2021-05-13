@@ -32,6 +32,7 @@ app.get('/read', (request, response) => {
   });
 });
 
+// Read the details of a specific customer
 app.get('/read/:id', (request, response) => {
   const id = request.params.id;
   const sqlSelect = "SELECT * FROM customers WHERE customer_id = ? ";

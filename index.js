@@ -62,6 +62,27 @@ app.post('/create', (request, response) => {
   });
 });
 
+// Updating the selected customer
+app.put('/update/:id', (request, response) => {
+  const id = request.params.id;
+  const firstName = request.body.firstName;
+  const lastName = request.body.lastName;
+  const phone = request.body.phone;
+  const email = request.body.email;
+  const houseNumber = request.body.houseNumber;
+  const street = request.body.street;
+  const suburb = request.body.suburb;
+  const city = request.body.city;
+  const make = request.body.make;
+  const model = request.body.model;
+  const year = request.body.year;
+  sqlUpdate = "UPDATE customers SET firstName = ?, lastName = ?, phone = ?, email = ?, houseNumber = ?, street = ?, suburb = ? city = ?  WHERE customer_id = ?";
+  db.query([firstName, lastName, phone, email, houseNumber, street, suburb, city, id], (error, result) => {
+    if (error) console.log(error);
+    response.send(result);
+  });
+});
+
 // app.delete('/delete', (req, res) => {
 //   const customerId = res.data.customer_id;
 

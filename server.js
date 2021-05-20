@@ -84,14 +84,15 @@ app.put('/update/:id', (request, response) => {
   });
 });
 
-// app.delete('/delete', (req, res) => {
-//   const customerId = res.data.customer_id;
+app.delete('/delete/:id', (request, response) => {
+  const id = request.params.id;
 
-//   const sqlDelete = "DELETE FROM customers WHERE customer_id = ?";
-//   db.query(sqlDelete, [customerId], (err, result) => {
-//     if (err) console.log(err);
-//   });
-// });
+  const sqlDelete = "DELETE FROM customers WHERE customer_id = ?";
+  db.query(sqlDelete, id, (error, result) => {
+    if (error) console.log(error);
+    response.send(result);
+  });
+});
 
 
 

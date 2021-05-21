@@ -5,7 +5,28 @@ const mysql = require('mysql');
 const app = express();
 const port = 3001;
 const cors = require('cors');
-require('dotenv').config();
+const faker = require('faker');
+const Seeder = require('mysql-db-seed').Seeder;
+
+const seed = new Seeder(
+  10,
+  'localhost',
+  'root',
+  process.env.PASSWORD,
+  'adamsdb'
+);
+
+seed.seed(
+  5,
+  'customers',
+  {
+    firstName: faker.name.firstName,
+    lastName: faker.name.lastName,
+    phone:  faker.phone.phoneNumberFormat
+  }
+);
+// seed.exit();
+// process.exit();
 
 app.use(cors());
 

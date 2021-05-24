@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql');
 const app = express();
-const port = 3001;
+// const port = 3001;
 const cors = require('cors');
 const faker = require('faker');
 const Seeder = require('mysql-db-seed').Seeder;
@@ -123,6 +123,4 @@ app.delete('/delete/:id', (request, response) => {
 
 
 
-app.listen(process.env.PORT || 3001, () => {
-  console.log(`Listening on port: ${port}`);
-});
+app.listen(process.env.PORT || 3001);

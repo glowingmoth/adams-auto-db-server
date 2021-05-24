@@ -46,7 +46,7 @@ app.use(express.urlencoded({extended: true}));
 //   database: 'adamsdb'
 // });
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
   host: 'us-cdbr-east-03.cleardb.com',
   user: 'b5db5f1ba8f615',
   password: 'ffdddb85',

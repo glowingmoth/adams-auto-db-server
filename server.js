@@ -8,23 +8,28 @@ const cors = require('cors');
 const faker = require('faker');
 const Seeder = require('mysql-db-seed').Seeder;
 
-const seed = new Seeder(
-  10,
-  'localhost',
-  'root',
-  process.env.PASSWORD,
-  'adamsdb'
-);
+// const seed = new Seeder(
+//   10,
+//   'localhost',
+//   'root',
+//   process.env.PASSWORD,
+//   'adamsdb'
+// );
 
-seed.seed(
-  5,
-  'customers',
-  {
-    firstName: faker.name.firstName,
-    lastName: faker.name.lastName,
-    phone:  faker.phone.phoneNumberFormat
-  }
-);
+// seed.seed(
+//   5,
+//   'customers',
+//   {
+//     firstName: faker.name.firstName,
+//     lastName: faker.name.lastName,
+//     phone:  faker.phone.phoneNumberFormat,
+//     email: faker.internet.email,
+//     houseNumber: faker.datatype.number,
+//     street: faker.address.streetName,
+//     suburb: faker.address.county,
+//     city: faker.address.city
+//   }
+// );
 // seed.exit();
 // process.exit();
 
@@ -46,6 +51,7 @@ db.connect((error) => {
   console.log('Connected to Database!');
 });
 
+// Read list of all customers 
 app.get('/read', (request, response) => {
   const sqlSelect = "SELECT * FROM customers";
   db.query(sqlSelect, (error, result) => {
@@ -117,6 +123,6 @@ app.delete('/delete/:id', (request, response) => {
 
 
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log(`Listening on port: ${port}`);
 });

@@ -38,7 +38,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-// Localhost
+// Development
 // const db = mysql.createConnection({
 //   host: 'localhost',
 //   user: 'root',
@@ -46,6 +46,7 @@ app.use(express.urlencoded({extended: true}));
 //   database: 'adamsdb'
 // });
 
+// Production
 const db = mysql.createPool({
   host: process.env.HOST,
   user: process.env.USER,

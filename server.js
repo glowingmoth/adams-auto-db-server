@@ -47,10 +47,10 @@ app.use(express.urlencoded({extended: true}));
 // });
 
 const db = mysql.createPool({
-  host: 'us-cdbr-east-03.cleardb.com',
-  user: 'b5db5f1ba8f615',
-  password: 'ffdddb85',
-  database: 'heroku_93b54dfc927ff9e'
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE
 });
 
 

@@ -49,7 +49,7 @@ app.use(express.urlencoded({extended: true}));
 const db = mysql.createConnection({
   host: 'us-cdbr-east-03.cleardb.com',
   user: 'b5db5f1ba8f615',
-  password: ffdddb85,
+  password: 'ffdddb85',
   database: 'heroku_93b54dfc927ff9e'
 });
 

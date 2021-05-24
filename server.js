@@ -38,13 +38,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+// Localhost
+// const db = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: process.env.PASSWORD,
+//   database: 'adamsdb'
+// });
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: process.env.PASSWORD,
-  database: 'adamsdb'
+  host: 'us-cdbr-east-03.cleardb.com',
+  user: 'b5db5f1ba8f615',
+  password: ffdddb85,
+  database: 'heroku_93b54dfc927ff9e'
 });
+
 
 db.connect((error) => {
   if (error) throw error

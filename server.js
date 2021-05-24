@@ -54,7 +54,7 @@ const db = mysql.createPool({
 });
 
 
-db.connect((error) => {
+db.getConnection((error) => {
   if (error) throw error
   console.log('Connected to Database!');
 });
